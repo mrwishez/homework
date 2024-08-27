@@ -15,17 +15,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Change directory to root
-      run: cd $GITHUB_WORKSPACE
-
     - name: Set up Docker Compose
       run: sudo apt-get -y install docker-compose
 
     - name: Build and run services
-      run: docker-compose -f $GITHUB_WORKSPACE/docker-compose.yml up -d
+      run: docker-compose up -d
 
     - name: Run tests
-      run: docker-compose -f $GITHUB_WORKSPACE/docker-compose.yml run test
+      run: docker-compose run test
 
     - name: Clean up
-      run: docker-compose -f $GITHUB_WORKSPACE/docker-compose.yml down
+      run: docker-compose down
